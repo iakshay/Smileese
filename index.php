@@ -262,13 +262,6 @@ if($nextPageExists)
 		<header>
 			<h1>Smileese</h1>
 			<h2>Analyse smiley usage in your network</h2>
-			<nav>
-			<ul>
-				<li><a href='index.php?logout=1'>My Profile</a></li>
-				<li><a href='index.php?friends'>Friends</a></li>
-				<li><a href='index.php?logout=1'>Logout</a></li>
-			</ul>
-		</nav>
 		</header>
 		<section class="login">
 			<?php

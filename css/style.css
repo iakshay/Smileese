@@ -43,6 +43,7 @@ h2{
 }
 
 .profile-chart{
+	overflow: hidden;
 	border:1px solid #ccc;
 	background:#eee;
 	position: relative;
@@ -59,7 +60,6 @@ h2{
 	bottom:0;
 	background:tomato;
 	top:60px;
-	padding-top:10px;
 	color:#fff;
 	left:0;
 	width:60px;	
