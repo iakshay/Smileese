@@ -15,7 +15,7 @@ if(isset($_REQUEST['logout']))
 }
 
 $client = new Google_Client();
-$client->setApplicationName('Smileese');
+$client->setApplicationName('Smiley');
 // Visit https://code.google.com/apis/console?api=plus to generate your
 // client id, client secret, and to register your redirect uri.
 $client->setClientId('844185797978.apps.googleusercontent.com');
@@ -161,8 +161,59 @@ else
 	}
 }
 
+$smileyList = array( 	'Smile' => array(':)', ':-)', '=)'),
+  						'Big Smile' => array(':D', ':-D'),
+  						'Exclamation' => array('!'),
+  						'Sad' => array(':(', ':-(', '=('),
+  						'Stick Tongue Out' => array(':P', ';P'),
+  						'Crying' => array(':\'(', 'T.T'),
+  						'Thinking' => array(':\\', ':-\\'),
+  						'Wink' => array(';)', ';-)'),
+  						'Embarrassed' => array(':$')
+  						);
+
 
 ?>
+
+
+<!doctype html>
+<html>
+<head>
+	<title>Smileese</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<h1>Smileese</h1>
+			<h2>Analyse smiley usage in your network</h2>
+		</header>
+		<?php
+		foreach ($finalTable as $person => $sp) {
+			echo 'Person : '.$person.'<br>';
+			$i = 0;
+		?>
+		<section class="profile-chart">
+			<ul>
+				<?php
+					foreach ($sp as $smiley => $count) {
+						$height =350 - ($count*20);
+				?>
+				<li style= <?php echo '"left:'.($i*90).'px;top:'.$height.'px"'; ?>>
+					<span><?php echo $count; ?> </span>
+					<i><?php echo $smileyList[$smiley][0]; ?></i>
+				
+				</li>
+				<?php $i++;} ?>
+					
+			</ul>
+		</section>
+		<?php } ?>
+	</div>
+</body>
+</html>
+
 <a href='index.php?logout=1'>Logout</a>
 <br>
 <a href='index.php'>My Page</a>
@@ -174,12 +225,12 @@ else
 
 if($nextPageExists)
 {
-	print 'Next page exists' . "<br>";
+	// print 'Next page exists' . "<br>";
 	print '<a href="index.php?friends=1&nextPage='.$nextPageToken.'">Next</a>';
 }
 
 
-print '<pre>' . print_r($finalTable, true) . '</pre>';
+// print '<pre>' . print_r($finalTable, true) . '</pre>';
 
 
 	// print '<pre>' . print_r($people, true). '</pre>';
@@ -197,5 +248,34 @@ print '<pre>' . print_r($finalTable, true) . '</pre>';
   $_SESSION['token'] = $client->getAccessToken();
 } else {
   $authUrl = $client->createAuthUrl();
-  print "<a href='$authUrl'>Connect Me!</a>";
+
+  ?>
+<html>
+<head>
+	<title>Smileese</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<h1>Smileese</h1>
+			<h2>Analyse smiley usage in your network</h2>
+		</header>
+		<section class="login">
+			<?php
+			print "<a href='$authUrl'>Login with Google+</a>";
+			?>
+			<!-- <a href="">Login with Google+</a>  -->
+		</section>
+	</div>
+</body>
+</html>
+
+
+  <?php
+  // print "<a href='$authUrl'>Connect Me!</a>";
 }
+
+?>
+
