@@ -206,6 +206,8 @@ $smileyList = array( 	'Smile' => array(':)', ':-)', '=)'),
 				<?php
 					foreach ($sp as $smiley => $count) {
 						$height =350 - ($count*20);
+						if($height < 0)
+							$height = 0;
 				?>
 				<li style= <?php echo '"left:'.($i*90).'px;top:'.$height.'px"'; ?>>
 					<span><?php echo $count; ?> </span>
