@@ -20,7 +20,7 @@ $client->setApplicationName('Smiley');
 // client id, client secret, and to register your redirect uri.
 $client->setClientId('844185797978.apps.googleusercontent.com');
 $client->setClientSecret('06qw-_VvWUcB4IdqiUTXQbT0');
-$client->setRedirectUri('http://localhost/googleplus/index.php');
+$client->setRedirectUri('http://smileese.herokuapp.com/index.php');
 $client->setDeveloperKey('AIzaSyAitzlX3CXcuygrenEc5qEZBz9rR1giDVA');
 $plus = new Google_PlusService($client);
 
@@ -188,10 +188,17 @@ $smileyList = array( 	'Smile' => array(':)', ':-)', '=)'),
 		<header>
 			<h1>Smileese</h1>
 			<h2>Analyse smiley usage in your network</h2>
+		<nav>
+			<ul>
+				<li><a href='index.php?logout=1'>My Profile</a></li>
+				<li><a href='index.php?friends'>Friends</a></li>
+				<li><a href='index.php?logout=1'>Logout</a></li>
+			</ul>
+		</nav>
 		</header>
 		<?php
 		foreach ($finalTable as $person => $sp) {
-			echo 'Person : '.$person.'<br>';
+			echo '<p><strong>Person :</strong> '.$person.'</p>';
 			$i = 0;
 		?>
 		<section class="profile-chart">
@@ -214,19 +221,13 @@ $smileyList = array( 	'Smile' => array(':)', ':-)', '=)'),
 </body>
 </html>
 
-<a href='index.php?logout=1'>Logout</a>
-<br>
-<a href='index.php'>My Page</a>
-<br>
-<a href = 'index.php?friends'>Friends</a>
-<br>
 <?php
 
 
 if($nextPageExists)
 {
 	// print 'Next page exists' . "<br>";
-	print '<a href="index.php?friends=1&nextPage='.$nextPageToken.'">Next</a>';
+	print '<a class=button" href="index.php?friends=1&nextPage='.$nextPageToken.'">Next</a>';
 }
 
 
@@ -261,6 +262,13 @@ if($nextPageExists)
 		<header>
 			<h1>Smileese</h1>
 			<h2>Analyse smiley usage in your network</h2>
+			<nav>
+			<ul>
+				<li><a href='index.php?logout=1'>My Profile</a></li>
+				<li><a href='index.php?friends'>Friends</a></li>
+				<li><a href='index.php?logout=1'>Logout</a></li>
+			</ul>
+		</nav>
 		</header>
 		<section class="login">
 			<?php
